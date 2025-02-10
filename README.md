@@ -1,18 +1,88 @@
 # **OpenAPI Diff Documentation**  
 
-## **Installation**
 
-### **Step 1: Initialize a JavaScript Project (Optional)**  
-If you haven't already set up a Node.js project, run:  
-```bash
-npm init  
+## **Java Project Integration**
+
+For bulk comparisons, a custom Java project automates the execution of OpenAPI Diff commands.
+
+### **How to Run**
+1. Clone the project from the repository.
+2. Update configuration settings in the `Configuration` class located in the `config` folder.
+3. Execute the main method in `main.java` to generate and run OpenAPI Diff commands.
+
+#### **Configuration Example**
+```java
+public class Configuration {
+    public String API_DOCS_FOLDER;
+    public String API_DOCS_DIFF_OUTPUT_FOLDER;
+
+    public Configuration() {
+        API_DOCS_FOLDER = "C:\\yaml\\ordered-YAML\\";
+        API_DOCS_DIFF_OUTPUT_FOLDER = "C:\\yaml\\diff-HTML\\";
+    }
+}
+```
+Ensure that the YAML files are placed in the `API_DOCS_FOLDER`, and specify the desired output folder.
+
+### **Handling YAML File Mapping**
+The program maps files using a `YAMLfilesHashMap` class:
+```java
+public class YAMLfilesHashMap {
+    Map<String, String> sortedMapping = new TreeMap<>();
+
+    public YAMLfilesHashMap() {
+        sortedMapping.put("2020-10-29-api-docs.yaml", "api-docs.yaml");
+        sortedMapping.put("2020-11-19-api-docs.yaml", "api-docs-Nov192020.yaml.txt");
+        sortedMapping.put("2020-11-27-api-docs.yaml", "api-docs-Nov272020.yaml.txt");
+        sortedMapping.put("2020-12-02-api-docs.yaml", "api-docs-Dec022020.yaml.txt");
+        sortedMapping.put("2020-12-24-api-docs.yaml", "api-docs-Dec242020.yaml.txt");
+        sortedMapping.put("2021-01-12-api-docs.yaml", "api-docs-Jan122021.yaml.txt");
+    }
+}
+```
+The program scans for files in the specified folder by referring to this mapping.
+
+### **Generating Reports**
+Use the following function to generate HTML reports containing API differences:
+```java
+reportGeneratorBulk.generateHTMLReport();
 ```
 
-### **Step 2: Install OpenAPI Diff**  
+### **Command Execution**
+Commands are generated using:
+```java
+commandGenerator.processAllFiles();
+```
+Initially, commands were executed via `ProcessBuilder`, but errors caused instability. The improved approach generates all commands, which can be copied and executed manually in the command prompt.
+
+**Tip:** If a command gets stuck, cancel it by pressing `Ctrl + Z`.
+
+### Sample Output
+![image](https://github.com/user-attachments/assets/9838945a-03a3-414c-bd0c-6d6a5ac8ad14)
+
+---
+
+### **Maven Dependency for `openapi-diff-core`**
+To integrate OpenAPI Diff Core in Java, download it from [Maven Repository](https://mvnrepository.com/artifact/org.openapitools.openapidiff/openapi-diff-core).
+
+---
+
+By following these steps, you can efficiently track changes between multiple OpenAPI specifications and generate insightful reports.
+
+
+
+## **Installation of openapi-diff**
+
+
+### **Step 1: Install OpenAPI Diff**  
 To install the tool, use the following command:  
 ```bash
-npm install openapi-diff --save-dev
+npm install -g openapi-diff
 ```  
+
+
+
+
 
 
 Follow the prompts to complete the project setup.  
@@ -64,17 +134,4 @@ The tool provides:
 
 ---
 
-## **Java Project Integration**  
 
-For bulk comparisons, a custom Java project is available to automate commands.  
-
-### **How to Run**  
-1. Clone the project from the repository.  
-2. Update configuration settings in the Java class located in the `config` folder.  
-3. Execute the main method in `ReportGeneratorBulk.java` to generate and run the OpenAPI Diff commands.  
-
-### **Java Version of OpenAPI Diff Core**  
-The Java project integrates `openapi-diff-core`:  
-- [Download from Maven Repository](https://mvnrepository.com/artifact/org.openapitools.openapidiff/openapi-diff-core)  
-
-By following these steps, you'll have a streamlined workflow for tracking changes between multiple OpenAPI specifications.  
