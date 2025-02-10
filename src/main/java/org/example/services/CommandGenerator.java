@@ -35,19 +35,15 @@ public class CommandGenerator {
                 OPENAPI_DOC_OLD = configuration.getAPI_DOCS_FOLDER()+YAMLFilesArray.get(i);
                 OPENAPI_DOC_NEW = configuration.getAPI_DOCS_FOLDER()+YAMLFilesArray.get(i+1);
             }
-//            System.out.println(YAMLFilesArray.get(i));
-//            System.out.println(YAMLFilesArray.get(i+1));
             String outputFileName = "Diff-" +YAMLFilesArray.get(i) + "-" + YAMLFilesArray.get(i + 1) + ".html";
             try{
-
-//            reportGenerator.generateReport(OPENAPI_DOC_OLD,OPENAPI_DOC_NEW,configuration,outputFileName);
+//              reportGenerator.generateReport(OPENAPI_DOC_OLD,OPENAPI_DOC_NEW,configuration,outputFileName);
+//              generateCommands only creates the commands that be executed in the CMD
                 reportGenerator.generateCommands(OPENAPI_DOC_OLD,OPENAPI_DOC_NEW,configuration,outputFileName);
             }
             catch (Exception e){
                 System.err.println("Error processing files: " + e.getMessage());
             }
-//            break;
-
         }
     }
 

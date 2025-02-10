@@ -20,10 +20,12 @@ import java.util.Map;
  */
 public class ReportGeneratorBulk {
 
-//    public static final String API_DOCS_FOLDER = "./input";
-//    public static final String API_DOCS_DIFF_OUTPUT_FOLDER = "C:\\Users\\darsh\\Desktop\\API Spec Diff\\SSM-API-Specs\\Diff html\\";
+    public static void main(String[] args){
+        ReportGeneratorBulk reportGeneratorBulk = new ReportGeneratorBulk();
+        reportGeneratorBulk.generateHTMLReport();
+    }
 
-    public static void main(String[] args) {
+    public void generateHTMLReport() {
         Configuration config = new Configuration();
         String html = "";
         String API_DOCS_FOLDER = config.getAPI_DOCS_FOLDER();
