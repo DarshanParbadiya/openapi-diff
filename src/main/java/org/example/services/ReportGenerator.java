@@ -66,7 +66,7 @@ public class ReportGenerator {
     }
 
     public void generateCommands(String OPENAPI_DOC_OLD, String OPENAPI_DOC2_NEW, Configuration configuration, String outputFileName){
-        String outputFile = configuration.getAPI_DOCS_DIFF_OUTPUT_FOLDER()+"\\"+outputFileName+".txt";
+        String outputFile = configuration.getAPI_DOCS_DIFF_OUTPUT_FOLDER()+outputFileName+".txt";
 //        String command = "npx openapi-diff "+'"'+ "file:/"+OPENAPI_DOC_OLD+ '"'+ " " + '"'+"file:/"+OPENAPI_DOC2_NEW +'"'+" > "+'"'+ outputFile+'"';
 
         String command = "npx openapi-diff "+'"'+OPENAPI_DOC_OLD+ '"'+ " " + '"'+OPENAPI_DOC2_NEW +'"'+" > "+'"'+ outputFile+'"';
